@@ -27,7 +27,7 @@ export type Hasil = {
 export type EntriRiwayat = {
   id: string;
   waktu: number;
-  jenis: "teks" | "resep";
+  jenis: "teks" | "resep" | "suara";
   masukan: string;
   hasil: Hasil[];
 };

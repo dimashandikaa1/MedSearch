@@ -81,7 +81,7 @@ export default function HalamanRiwayat() {
                 aria-expanded={buka === e.id}
               >
                 <span className="text-xs font-semibold uppercase tracking-wide text-redup">
-                  {e.jenis === "resep" ? "📷 Foto resep" : "⌨ Teks"} · {fmt.format(e.waktu)}
+                  {e.jenis === "resep" ? "📷 Foto resep" : e.jenis === "suara" ? "🎤 Suara" : "⌨ Teks"} · {fmt.format(e.waktu)}
                 </span>
                 <span className="mt-1 line-clamp-2 block font-semibold">{e.masukan}</span>
                 <span className="mt-1 block text-sm text-redup">

@@ -49,6 +49,7 @@ Daftar model yang tersedia untuk akunmu bisa dilihat di AI Studio, atau:
 | 1 | Terjemah ketik langsung, saran istilah serupa | `app/page.tsx`, `lib/kamus.ts`, `app/api/terjemah` |
 | 2 | Penjelasan awam, kegunaan, peringatan | `components/KartuHasil.tsx`, `data/istilah.json` |
 | 2 | Foto resep: kamera langsung & unggah gambar | `app/resep/page.tsx`, `components/KameraLangsung.tsx`, `app/api/resep` |
+| 2 | Suara: ucapkan istilah medis (halaman sendiri di menu) | `app/suara/page.tsx`, `components/TombolSuara.tsx` |
 | 2 | Kamus: cari, A–Z, populer, halaman detail | `app/kamus`, `components/JelajahKamus.tsx` |
 | 3 | Riwayat: daftar, buka ulang, cari, hapus | `app/riwayat/page.tsx`, `lib/riwayat.ts` |
 | 4 | Bagikan, salin, simpan sebagai gambar | `components/KartuHasil.tsx` |

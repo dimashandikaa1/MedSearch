@@ -16,6 +16,12 @@ const Ikon = {
       <circle cx="12" cy="12.5" r="3.5" />
     </>
   ),
+  suara: (
+    <>
+      <rect x="9" y="2" width="6" height="12" rx="3" />
+      <path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4" />
+    </>
+  ),
   kamus: (
     <>
       <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z" />
@@ -33,6 +39,7 @@ const Ikon = {
 const MENU = [
   { href: "/", label: "Terjemah", ikon: Ikon.terjemah },
   { href: "/resep", label: "Foto Resep", ikon: Ikon.resep },
+  { href: "/suara", label: "Suara", ikon: Ikon.suara },
   { href: "/kamus", label: "Kamus", ikon: Ikon.kamus },
   { href: "/riwayat", label: "Riwayat", ikon: Ikon.riwayat },
 ];
@@ -98,7 +105,7 @@ export default function Navigasi() {
 
       {/* ===== Navigasi bawah (khusus HP) ===== */}
       <nav aria-label="Menu utama" className="nav-bawah fixed inset-x-0 bottom-0 z-30 border-t border-garis md:hidden">
-        <ul className="mx-auto grid max-w-md grid-cols-4 px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1.5">
+        <ul className="mx-auto grid max-w-md grid-cols-5 px-1 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1.5">
           {MENU.map((m) => {
             const a = aktif(m.href);
             return (
@@ -111,7 +118,7 @@ export default function Navigasi() {
                   }`}
                 >
                   <span
-                    className={`grid h-8 w-14 place-items-center rounded-full transition-colors ${
+                    className={`grid h-8 w-12 place-items-center rounded-full transition-colors ${
                       a ? "bg-aksen-lembut text-aksen" : ""
                     }`}
                   >

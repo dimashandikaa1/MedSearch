@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import KartuHasil from "@/components/KartuHasil";
-import TombolSuara from "@/components/TombolSuara";
 import { cariPersis, cariSerupa, keHasil } from "@/lib/kamus";
 import { ambilRiwayat, tambahRiwayat } from "@/lib/riwayat";
 import type { Hasil, Istilah } from "@/lib/types";
@@ -86,12 +85,6 @@ export default function HalamanTerjemah() {
     terjemahkan(s);
   }
 
-  // Suara bisa salah dengar istilah Latin, jadi semua kemungkinan dicek ke kamus dulu
-  function dariSuara(alternatif: string[]) {
-    const terbaik = alternatif.find((a) => cariPersis(a)) ?? alternatif[0];
-    pilih(terbaik);
-  }
-
   const kosong = !memuat && !galat && hasil.length === 0;
 
   return (
@@ -105,7 +98,7 @@ export default function HalamanTerjemah() {
           jadi bahasa kita.
         </h1>
         <p className="mt-3 text-base text-redup sm:text-lg">
-          Ketik, tempel, atau ucapkan istilah medis, kalimat dari hasil pemeriksaan, atau singkatan di resep.
+          Ketik atau tempel istilah medis, kalimat dari hasil pemeriksaan, atau singkatan di resep.
         </p>
 
         <form
@@ -137,18 +130,7 @@ export default function HalamanTerjemah() {
               className="w-full resize-none bg-transparent px-3 py-2 text-lg outline-none placeholder:text-redup/70"
             />
             <div className="flex items-center justify-between gap-2 px-2 pb-1">
-              <div className="flex items-center gap-3">
-                <TombolSuara
-                  disabled={memuat}
-                  onSementara={(t) => {
-                    setGalat("");
-                    setTeks(t);
-                  }}
-                  onSelesai={dariSuara}
-                  onGalat={setGalat}
-                />
-                <span className="text-xs text-redup">{teks.length}/600</span>
-              </div>
+              <span className="text-xs text-redup">{teks.length}/600</span>
               <button
                 type="submit"
                 disabled={memuat || teks.trim().length < 2}

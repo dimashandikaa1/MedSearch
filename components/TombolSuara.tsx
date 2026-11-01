@@ -41,6 +41,8 @@ const PESAN_GALAT: Record<string, string> = {
 
 type Props = {
   disabled?: boolean;
+  /** Tampilan tombol besar untuk halaman Suara */
+  besar?: boolean;
   /** Teks sementara saat pengguna masih bicara */
   onSementara: (teks: string) => void;
   /** Kalimat final; berisi beberapa kemungkinan, urut dari yang paling yakin */
@@ -48,7 +50,7 @@ type Props = {
   onGalat: (pesan: string) => void;
 };
 
-export default function TombolSuara({ disabled, onSementara, onSelesai, onGalat }: Props) {
+export default function TombolSuara({ disabled, besar, onSementara, onSelesai, onGalat }: Props) {
   const [didukung, setDidukung] = useState(false);
   const [mendengar, setMendengar] = useState(false);
   const pengenal = useRef<PengenalSuara | null>(null);
@@ -111,6 +113,9 @@ export default function TombolSuara({ disabled, onSementara, onSelesai, onGalat 
 
   if (!didukung) return null;
 
+  const ukuranTombol = besar ? "size-28 rounded-full sm:size-32" : "size-11 rounded-xl";
+  const ukuranIkon = besar ? 44 : 20;
+
   return (
     <button
       type="button"
@@ -119,19 +124,19 @@ export default function TombolSuara({ disabled, onSementara, onSelesai, onGalat 
       aria-pressed={mendengar}
       aria-label={mendengar ? "Berhenti mendengarkan" : "Ucapkan istilah medis"}
       title={mendengar ? "Berhenti mendengarkan" : "Ucapkan istilah medis"}
-      className={`relative grid size-11 shrink-0 place-items-center rounded-xl border transition-colors disabled:opacity-40 ${
+      className={`relative grid ${ukuranTombol} shrink-0 place-items-center border transition-colors disabled:opacity-40 ${
         mendengar
           ? "border-bahaya bg-bahaya-lembut text-bahaya"
           : "border-garis bg-kartu text-redup hover:border-utama hover:text-utama"
       }`}
     >
       {mendengar && (
-        <span aria-hidden className="absolute inset-0 rounded-xl bg-bahaya/25 motion-safe:animate-ping" />
+        <span aria-hidden className={`absolute inset-0 bg-bahaya/25 motion-safe:animate-ping ${besar ? "rounded-full" : "rounded-xl"}`} />
       )}
       <svg
         viewBox="0 0 24 24"
-        width="20"
-        height="20"
+        width={ukuranIkon}
+        height={ukuranIkon}
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
