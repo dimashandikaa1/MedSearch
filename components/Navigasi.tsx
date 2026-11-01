@@ -68,8 +68,7 @@ export default function Navigasi() {
               ✚
             </span>
             <span className="truncate text-base sm:text-lg">
-              
-              MedSearch<span className="hidden min-[400px]:inline"></span>
+              Terjemah Medis<span className="hidden min-[400px]:inline"> Awam</span>
             </span>
           </Link>
 

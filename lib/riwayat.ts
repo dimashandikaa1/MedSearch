@@ -19,9 +19,15 @@ function simpan(daftar: EntriRiwayat[]) {
   }
 }
 
+/** crypto.randomUUID hanya ada di HTTPS/localhost; sediakan cadangan untuk akses lewat IP lokal. */
+function buatId() {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
 export function tambahRiwayat(e: Omit<EntriRiwayat, "id" | "waktu">) {
-  if (!e.hasil.length) return;
-  const baru: EntriRiwayat = { ...e, id: crypto.randomUUID(), waktu: Date.now() };
+  if (!e.hasil?.length) return;
+  const baru: EntriRiwayat = { ...e, id: buatId(), waktu: Date.now() };
   simpan([baru, ...ambilRiwayat()]);
 }
 
